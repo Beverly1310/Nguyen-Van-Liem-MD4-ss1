@@ -23,6 +23,7 @@ public class Employee {
     private Date birthday;
     private String position;
     private Double salary;
+    private String avatar;
     @ManyToOne
     @JoinColumn(name = "departId",referencedColumnName = "id")
     private Department department;

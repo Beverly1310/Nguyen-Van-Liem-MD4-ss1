@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/employee")
@@ -22,9 +23,9 @@ public class EmployeeController {
         return "add_employee";
     }
     @PostMapping("/add")
-    public String handleAdd(@ModelAttribute("employee") Employee employee,@RequestParam("departmentId") Integer departmentId) {
+    public String handleAdd(@ModelAttribute("employee") Employee employee,@RequestParam("departmentId") Integer departmentId,@RequestParam("file") MultipartFile file) {
         employee.setDepartment(departmentService.getDepartmentById(departmentId));
-        employeeService.addEmployee(employee);
+        employeeService.addEmployee(employee,file);
         return "redirect:/";
     }
     @GetMapping("/edit/{id}")
@@ -34,9 +35,9 @@ public class EmployeeController {
         return "edit_employee";
     }
     @PostMapping("/edit/{id}")
-    public String handleEdit(@PathVariable("id") Integer id,@ModelAttribute("employee") Employee employee,@RequestParam("departmentId") Integer departmentId) {
+    public String handleEdit(@PathVariable("id") Integer id,@ModelAttribute("employee") Employee employee,@RequestParam("departmentId") Integer departmentId,@RequestParam("file") MultipartFile file) {
         employee.setDepartment(departmentService.getDepartmentById(departmentId));
-        employeeService.updateEmployee(employee,id);
+        employeeService.updateEmployee(employee,id,file);
         return "redirect:/";
     }
     @GetMapping("/delete/{id}")

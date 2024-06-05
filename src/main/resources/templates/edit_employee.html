@@ -13,10 +13,14 @@
 <body>
 <div class="container mt-5">
     <h2>Add Department</h2>
-    <form th:action="@{/employee/edit/{id}(id=${employee.empId})}" method="post" th:object="${employee}">
+    <form th:action="@{/employee/edit/{id}(id=${employee.empId})}" enctype="multipart/form-data" method="post" th:object="${employee}">
         <div class="form-group">
             <label >Employee Name</label>
             <input th:field="*{empName}" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label >Avatar</label>
+            <input name="file" type="file" class="form-control" >
         </div>
         <div class="form-group">
             <label >Gender</label>
