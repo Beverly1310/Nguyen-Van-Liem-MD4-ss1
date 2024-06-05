@@ -38,7 +38,7 @@
         <div class="form-group">
             <label for="status">Department</label>
             <select name="departmentId" class="form-control" id="status">
-                <option th:selected="${department.id==employee.department.id}" th:each="department : ${departments}" th:value="${department.id}" th:text="${department.departName}"></option>
+                <option th:if="${department.status}" th:selected="${department.id==employee.department.id}" th:each="department : ${departments}" th:value="${department.id}" th:text="${department.departName}"></option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>

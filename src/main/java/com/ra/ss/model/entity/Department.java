@@ -3,6 +3,8 @@ package com.ra.ss.model.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "department")
 @AllArgsConstructor
@@ -16,4 +18,6 @@ public class Department {
     private Integer id;
     private String departName;
     private Boolean status;
+    @OneToMany(mappedBy = "department")
+    private List<Employee> employees;
 }

@@ -34,6 +34,14 @@ public class DepartmentImpl implements IDepartmentService {
 
     @Override
     public void deleteDepartment(Integer id) {
-        departmentRepository.delete(getDepartmentById(id));
+        Department department = departmentRepository.findById(id).orElse(null);
+        if (department != null) {
+            if(!department.getEmployees().isEmpty()) {
+                department.setStatus(false);
+            } else {
+                departmentRepository.delete(getDepartmentById(id));
+
+            }
+        }
     }
 }
