@@ -38,6 +38,7 @@ public class DepartmentImpl implements IDepartmentService {
         if (department != null) {
             if(!department.getEmployees().isEmpty()) {
                 department.setStatus(false);
+                updateDepartment(department,department.getId());
             } else {
                 departmentRepository.delete(getDepartmentById(id));
 
